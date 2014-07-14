@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>test</title>
+<script type="text/javascript" src="./jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./jquery.simple_table.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(document.body).css({ "width":"5000px" });
+	var col_headers = [];
+	for (var i = 0; i < 20; i++) {
+		col_headers.push("col label(" + (i + 1) + ")");
+	}
+	var row_headers = [];
+	for (var i = 0; i < 20; i++) {
+		row_headers.push("row label(" + (i + 1) + ")");
+	}
+	var cell_data = [];
+	for (var i = 0; i < row_headers.length; i++) {
+		var row_data = [];
+		for (var ii = 0; ii < col_headers.length; ii++) {
+			row_data.push("sample");
+		}
+		cell_data.push(row_data);
+	}
+	cell_data[0][0] = "ABCDEFGHIJKLMN";
+	$("#table_id_1").simple_table({
+		"cols":String(col_headers.length), 
+		"col-headers":col_headers, 
+		"col-headers-id-prefix":"1_ch_id_", // id="ch_id_{col number(1～)}"
+		"col-headers-text-align":"center", 
+		"col-headers-color":"#FFFFFF", 
+		"col-headers-background-color":"#B0C4DE", 
+		"rows":String(row_headers.length), 
+		"row-headers":row_headers, 
+		"row-headers-id-prefix":"1_rh_id_", // id="rh_id_{row number(1～)}"
+		"row-headers-text-align":"center", 
+		"row-headers-color":"#FFFFFF", 
+		"row-headers-background-color":"#D8BFD8", 
+		"top-left-header":"top left label", 
+		"top-left-header-id":"1_tlh_id", // id="tlh_id"
+		"top-left-header-text-align":"center", 
+		"top-left-header-color":"#FFFFFF", 
+		"top-left-header-background-color":"#A9A9A9", 
+		"cell-data":cell_data, 
+		"cells-id-prefix":"1_c_id_", // id="c_id_{col number(1～)}-{row number(1～)}"
+		"cells-text-align":"left", 
+		"cells-color":"#000000", 
+		"cells-background-color":"#FFFFFF", 
+		"ruled-line-border-color":"#000000", 
+		"ruled-line-border-style":"solid", 
+		"ruled-line-border-width":"1px", 
+		"ruled-line-width":"125px", 
+		"ruled-line-height":"25px"
+	});
+	$("#table_id_2").simple_table({
+		"cols":String(col_headers.length), 
+		"col-headers":col_headers, 
+		"col-headers-id-prefix":"2_ch_id_", 
+		"rows":String(row_headers.length), 
+		"cell-data":cell_data, 
+		"cells-id-prefix":"2_c_id_"
+	});
+	$("#table_id_3").simple_table({
+		"cols":String(col_headers.length), 
+		"rows":String(row_headers.length), 
+		"row-headers":row_headers, 
+		"row-headers-id-prefix":"3_rh_id_", 
+		"cell-data":cell_data, 
+		"cells-id-prefix":"3_c_id_"
+	});
+	$("#table_id_4").simple_table({
+		"cols":String(col_headers.length), 
+		"rows":String(row_headers.length), 
+		"cell-data":cell_data, 
+		"cells-id-prefix":"4_c_id_"
+	});
+});
+</script>
+</head>
+<body>
+■row label on/col label on<br /><br />
+<div id="table_id_1"></div><br /><br />
+■row label off/col label on<br /><br />
+<div id="table_id_2"></div><br /><br />
+■row label on/col label off<br /><br />
+<div id="table_id_3"></div><br /><br />
+■row label off/col label off<br /><br />
+<div id="table_id_4"></div><br /><br />
+</body>
+</html>
